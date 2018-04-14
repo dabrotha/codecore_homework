@@ -10,7 +10,7 @@ let outputStr = "";
 function drawLine (num) {
     let output = '';
   for (let i = 0; i<num; i++)
-    {output += "-"};
+    {output += "━"};
     return output;
 }
 
@@ -19,13 +19,23 @@ function drawLine (num) {
 function drawTopBorder (num) {
 let output="┏";
 for (let i=1; i<(num-1); i++) {
-    output+="-";
+    output+="━";
 }
 output += "┓";
 return output;
 };
 
-console.log(drawTopBorder(input));
+
+function drawMiddleBorder(num){
+    let output="┣";
+      for (let i=1; i<(num-1); i++) {
+        output+="━";
+      }
+    output += "┫";
+    return output;
+};
+
+console.log(drawMiddleBorder(input));
 
 
 
