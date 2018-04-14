@@ -44,24 +44,18 @@ function drawBottomBorder (num) {
     return output;
     };
 
+function drawBarsAround (str) {
+    let output="┃";
+      output+=str;
+    output += "┃";
+    return output;
+    };    
 
-console.log(drawBottomBorder(input));
+
+console.log(drawBarsAround(input));
 
 
 
 
 
 
-// drawTopBorder, drawMiddleBorder and drawBottomBorder Functions
-// Write three functions: drawTopBorder, drawMiddleBorder and drawBottomBorder. Each function should take a number, return a line of length including corner pieces. You can make use of drawLine to implement these functions.
-
-// Example usage:
-
-// drawTopBorder(4) // returns '┏━━━━┓'
-// drawTopBorder(0) // returns '┏┓'
-
-// drawMiddleBorder(8) // returns '┣━━━━━━━━━┫'
-// drawMiddleBorder(0) // returns '┣┫'
-
-// drawBottomBorder(2) // returns '┗━━┗'
-// You will need special characters to "draw" the box. You can find them listed in this Wikipedia article. To use them, you can copy & paste them where needed.
