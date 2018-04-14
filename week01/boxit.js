@@ -35,7 +35,17 @@ function drawMiddleBorder(num){
     return output;
 };
 
-console.log(drawMiddleBorder(input));
+function drawBottomBorder (num) {
+    let output="┗";
+    for (let i=1; i<(num-1); i++) {
+        output+="━";
+    }
+    output += "┛";
+    return output;
+    };
+
+
+console.log(drawBottomBorder(input));
 
 
 
@@ -53,5 +63,5 @@ console.log(drawMiddleBorder(input));
 // drawMiddleBorder(8) // returns '┣━━━━━━━━━┫'
 // drawMiddleBorder(0) // returns '┣┫'
 
-// drawBottomBorder(2) // returns '┗━━┛'
+// drawBottomBorder(2) // returns '┗━━┗'
 // You will need special characters to "draw" the box. You can find them listed in this Wikipedia article. To use them, you can copy & paste them where needed.
