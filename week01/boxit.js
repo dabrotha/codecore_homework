@@ -2,10 +2,7 @@
 const args = process.argv.slice(2);
 let input = args;
 
-let outputStr = "";
-
-
-
+let outputStr = ""; // might not need this one
 
 function drawLine (num) {
     let output = '';
@@ -14,11 +11,9 @@ function drawLine (num) {
     return output;
 }
 
-
-
 function drawTopBorder (num) {
 let output="┏";
-for (let i=1; i<(num-1); i++) {
+for (let i=1; i<(num+1); i++) {
     output+="━";
 }
 output += "┓";
@@ -28,7 +23,7 @@ return output;
 
 function drawMiddleBorder(num){
     let output="┣";
-      for (let i=1; i<(num-1); i++) {
+      for (let i=1; i<(num+1); i++) {
         output+="━";
       }
     output += "┫";
@@ -37,7 +32,7 @@ function drawMiddleBorder(num){
 
 function drawBottomBorder (num) {
     let output="┗";
-    for (let i=1; i<(num-1); i++) {
+    for (let i=1; i<(num+1); i++) {
         output+="━";
     }
     output += "┛";
@@ -46,16 +41,63 @@ function drawBottomBorder (num) {
 
 function drawBarsAround (str) {
     let output="┃";
-      output+=str;
+    output+=str;
     output += "┃";
     return output;
     };    
 
+function boxIt(str) {
+    let output = "";
+    if (str.length === 1) { // case if there is only one value in array
+        output += (drawTopBorder(str[0].length) + "\n" + drawBarsAround(str)) + "\n" + drawBottomBorder(str[0].length);
 
-console.log(drawBarsAround(input));
+    } else if (str.length === 0) { // case if there is no input
+        output += ('┏┓\n┗┛');
+
+    } else {
+        console.log("function for arrays is in development")}; // will write str.length l===1
+
+    output += "\n";
+    return output;
+};
+
+console.log(boxIt(input))
+
+// console.log("sdfwf", "\n", 'wef')
+
+//console.log(boxIt(input));
 
 
 
+// boxIt Function
+// Write a boxIt function that takes an array of strings and returns a string where each is in a single column table. To add "new lines" to a string, use the \n special character. In a string, \n characters will display as new lines when logged with console.log(...).
 
+// Try using the functions you've built previously (e.g. drawBottomBorder, drawBottomBorder, etc) to help you implement this function.
+
+// Example usage:
+
+// boxIt(['Jon Snow', 'Cersei Lannister'])
+// // returns...
+// // '┏━━━━━━━━━━━━━━━━┓\n┃Jon Snow        ┃\n┣━━━━━━━━━━━━━━━━┫\n┃Cersei Lannister┃\n┗━━━━━━━━━━━━━━━━┛'
+
+// // When logged, the '\n' appear as new lines...
+// console.log(boxIt(['Jon Snow', 'Cersei Lannister']))
+
+// ┏━━━━━━━━━━━━━━━━┓
+// ┃Jon Snow        ┃
+// ┣━━━━━━━━━━━━━━━━┫
+// ┃Cersei Lannister┃
+// ┗━━━━━━━━━━━━━━━━┛
+
+// boxIt(['Jon Snow']) // returns '┏━━━━━━━━┓\n┃Jon Snow┃\n┗━━━━━━━━┛'
+
+// // when logged, appears as...
+// console.log(boxIt(['Jon Snow']))
+
+// ┏━━━━━━━━┓
+// ┃Jon Snow┃
+// ┗━━━━━━━━┛
+
+// $ node boxit.js // returns '┏┓\n┗┛'
 
 
