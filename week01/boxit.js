@@ -43,22 +43,39 @@ function drawBottomBorder (num) {
     };
 
 function addSpacesToOutput (num, str) { //this function is meant to add spaces to output of boxIt in case value is less than longestValLength. It has to be implemented to drawBarsAround
+   
+    if (typeof(str)!=='string') {
+        console.log("String is not a String: Error. Cleared the string.")
+        str = '';
+    } else {};
+
+    if (typeof(num)!=='number') {
+        num = parseInt(num);
+        console.log('something is wrong');
+    } else {};
+
+
     let output = "";
     let difference = (num-str.length);
-    for (i = 0; i<difference; i++) {
-        output += " ";
-    }
+    if (difference>0) {
+        for (i = 0; i<difference; i++) {
+            output += " ";
+        }
+    } else {};
+
     return output;
 }
 
 function drawBarsAround (num, str) {
     let output="┃";
     output+=str;
+    if (typeof(str)==='string'){
     if (str.length<num) {
         output+=addSpacesToOutput(num, str);
     } else {
 
     };
+      } else {};
     output += "┃";
     return output;
     };    
@@ -107,6 +124,7 @@ function boxIt(str) {
 };
 
 console.log(boxIt(input));
+
 
 
 
