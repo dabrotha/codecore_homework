@@ -1,7 +1,6 @@
 
 const args = process.argv.slice(2);
 let input = args;
-console.log(input);
 let outputStr = ""; // might not need this one
 
 function drawLine (num) {
@@ -44,9 +43,23 @@ function drawBottomBorder (num) {
     return output;
     };
 
-function drawBarsAround (str) {
+function addSpacesToOutput (num, str) { //this function is meant to add spaces to output of boxIt in case value is less than longestValLength. It has to be implemented to drawBarsAround
+    let output = "";
+    let difference = (num-str.length);
+    for (i = 0; i<difference; i++) {
+        output += " ";
+    }
+    return output;
+}
+
+function drawBarsAround (num, str) {
     let output="┃";
     output+=str;
+    if (str.length<num) {
+        output+=addSpacesToOutput(num, str);
+    } else {
+
+    };
     output += "┃";
     return output;
     };    
@@ -55,7 +68,6 @@ function longestValLength (arr) { //will return .length of the longest value in 
     let retVal = 0;
   for (i=0; i<arr.length; i++) {
       if (retVal < arr[i].length) {
-          console.log(arr[i].length);
           retVal = arr[i].length;
       } else {
 
@@ -64,11 +76,13 @@ function longestValLength (arr) { //will return .length of the longest value in 
   }
 }
 
+
+
 function boxIt(str) {
     let output = "";
     let longestKey = longestValLength(str); //this variable whil be used for border lengths
     if (str.length === 1) { // case if there is only one value in array
-        output += (drawTopBorder(longestKey) + "\n" + drawBarsAround(str)) + "\n" + drawBottomBorder(str[0].length);
+        output += (drawTopBorder(longestKey) + "\n" + drawBarsAround(str.length, str)) + "\n" + drawBottomBorder(str[0].length);
 
     } else if (str.length === 0) { // case if there is no input
         output += ('┏┓\n┗┛');
@@ -77,7 +91,7 @@ function boxIt(str) {
         output += (drawTopBorder(longestKey) + "\n");
         for (i=0; i<str.length; i++) {
 
-            output += (drawBarsAround(str[i]) + "\n"); 
+            output += (drawBarsAround(longestKey, str[i]) + "\n"); 
             
             if (i<(str.length-1)) {
                 output += (drawMiddleBorder(longestKey) + "\n");
@@ -96,11 +110,6 @@ function boxIt(str) {
 console.log(boxIt(input));
 
 
-
-
-// console.log("sdfwf", "\n", 'wef')
-
-//console.log(boxIt(input));
 
 
 
