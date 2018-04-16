@@ -57,8 +57,12 @@ function boxIt(str) {
     } else if (str.length > 1) {
         output += (drawTopBorder(str[0].length) + "\n");
         for (i=0; i<str.length; i++) {
-            console.log(str[i]);
-            output += (drawBarsAround(str[i]) + "\n" + drawMiddleBorder(str[i]) + "\n");
+
+            output += (drawBarsAround(str[i]) + "\n"); 
+            
+            if (i<(str.length-1)) {
+                output += (drawMiddleBorder(str[i]) + "\n");
+            } else {}
         
         }
         output += (drawBottomBorder(str[0].length));
