@@ -89,7 +89,7 @@ function boxIt(str) {
 
     } else if (str.length > 1) { // case when there is more than one value in array
         output += (drawTopBorder(longestKey) + "\n");
-        for (i=0; i<str.length; i++) {
+        for (i=0; i<str.length+1; i++) { // I had to use str.length+1 because >=str.length returned a value that is undefined
 
             output += (drawBarsAround(longestKey, str[i]) + "\n"); 
             
