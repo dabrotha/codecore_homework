@@ -1,7 +1,7 @@
 
 const args = process.argv.slice(2);
 let input = args;
-
+console.log(input);
 let outputStr = ""; // might not need this one
 
 function drawLine (num) {
@@ -23,7 +23,7 @@ return output;
 
 function drawMiddleBorder(num){
     let output="┣";
-      for (let i=1; i<(num+1); i++) {
+      for (let i=1; i<(num.length+1); i++) {
         output+="━";
       }
     output += "┫";
@@ -54,14 +54,26 @@ function boxIt(str) {
     } else if (str.length === 0) { // case if there is no input
         output += ('┏┓\n┗┛');
 
+    } else if (str.length > 1) {
+        output += (drawTopBorder(str[0].length) + "\n");
+        for (i=0; i<str.length; i++) {
+            console.log(str[i]);
+            output += (drawBarsAround(str[i]) + "\n" + drawMiddleBorder(str[i]) + "\n");
+        
+        }
+        output += (drawBottomBorder(str[0].length));
+
     } else {
-        console.log("function for arrays is in development")}; // will write str.length l===1
+        console.log("There is an error")}; // this shouldn't ever happen
 
     output += "\n";
     return output;
 };
 
-console.log(boxIt(input))
+console.log(boxIt(input));
+
+
+
 
 // console.log("sdfwf", "\n", 'wef')
 
@@ -91,13 +103,6 @@ console.log(boxIt(input))
 
 // boxIt(['Jon Snow']) // returns '┏━━━━━━━━┓\n┃Jon Snow┃\n┗━━━━━━━━┛'
 
-// // when logged, appears as...
-// console.log(boxIt(['Jon Snow']))
 
-// ┏━━━━━━━━┓
-// ┃Jon Snow┃
-// ┗━━━━━━━━┛
-
-// $ node boxit.js // returns '┏┓\n┗┛'
 
 
