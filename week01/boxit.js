@@ -1,7 +1,6 @@
 
 const args = process.argv.slice(2);
 let input = args;
-let outputStr = ""; // might not need this one
 
 function drawLine (num) {
     let output = '';
@@ -109,31 +108,6 @@ function boxIt(str) {
 
 console.log(boxIt(input));
 
-
-
-
-
-// boxIt Function
-// Write a boxIt function that takes an array of strings and returns a string where each is in a single column table. To add "new lines" to a string, use the \n special character. In a string, \n characters will display as new lines when logged with console.log(...).
-
-// Try using the functions you've built previously (e.g. drawBottomBorder, drawBottomBorder, etc) to help you implement this function.
-
-// Example usage:
-
-// boxIt(['Jon Snow', 'Cersei Lannister'])
-// // returns...
-// // '┏━━━━━━━━━━━━━━━━┓\n┃Jon Snow        ┃\n┣━━━━━━━━━━━━━━━━┫\n┃Cersei Lannister┃\n┗━━━━━━━━━━━━━━━━┛'
-
-// // When logged, the '\n' appear as new lines...
-// console.log(boxIt(['Jon Snow', 'Cersei Lannister']))
-
-// ┏━━━━━━━━━━━━━━━━┓
-// ┃Jon Snow        ┃
-// ┣━━━━━━━━━━━━━━━━┫
-// ┃Cersei Lannister┃
-// ┗━━━━━━━━━━━━━━━━┛
-
-// boxIt(['Jon Snow']) // returns '┏━━━━━━━━┓\n┃Jon Snow┃\n┗━━━━━━━━┛'
 
 
 
