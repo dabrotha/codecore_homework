@@ -46,17 +46,27 @@ function drawBarsAround (str) {
     return output;
     };    
 
-function maxLength (arr) {
+function maxLength (arr) { //finding a string with max length in array
     output = 0;
     for (i=0; i<arr.length; i++){
-        if (arr[i]>output) {
-            output = arr[i];
+        if (arr[i].length>output) {
+            output = arr[i].length;
         } else {}
     }
+    return output;
 }
+
+function howManyLetters (str) { //this function will calculate amount of spaces needed to add to a string.
+    //added for simplicity
+    return str.length;
+}
+
+
+
 
 function boxIt(str) {
     let output = "";
+    let maxKeyLength = maxLength(str);
     if (str.length === 1) { // case if there is only one value in array
         output += (drawTopBorder(str[0].length) + "\n" + drawBarsAround(str)) + "\n" + drawBottomBorder(str[0].length);
 
@@ -66,7 +76,8 @@ function boxIt(str) {
     } else if (str.length > 1) {
         output += (drawTopBorder(str[0].length) + "\n");
         for (i=0; i<str.length; i++) {
-            console.log(str[i]);
+
+
             output += (drawBarsAround(str[i]) + "\n" + drawMiddleBorder(str[i]) + "\n");
         
         }
