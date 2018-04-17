@@ -46,6 +46,15 @@ function drawBarsAround (str) {
     return output;
     };    
 
+function maxLength (arr) {
+    output = 0;
+    for (i=0; i<arr.length; i++){
+        if (arr[i]>output) {
+            output = arr[i];
+        } else {}
+    }
+}
+
 function boxIt(str) {
     let output = "";
     if (str.length === 1) { // case if there is only one value in array
