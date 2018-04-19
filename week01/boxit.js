@@ -1,6 +1,7 @@
 
 const args = process.argv.slice(2);
 let input = args;
+let outputStr = ""; // might not need this one
 
 function drawLine (num) {
     let output = '';
@@ -21,13 +22,8 @@ return output;
 
 function drawMiddleBorder(num){
     let output="┣";
-      if (typeof(num)==="number"){
-          for (let i=0; i<num; i++) {
-        output+="━";}// end of loop
-
-      } else {
-      for (let i=1; i<(num.length+1); i++) {
-        output+="━";} // end of loop
+      for (let i=1; i<(num+1); i++) {
+        output+="━";
       }
     output += "┫";
     return output;
@@ -42,91 +38,73 @@ function drawBottomBorder (num) {
     return output;
     };
 
-function addSpacesToOutput (num, str) { //this function is meant to add spaces to output of boxIt in case value is less than longestValLength. It has to be implemented to drawBarsAround
-   
-    if (typeof(str)!=='string') {
-        console.log("String is not a String: Error. Cleared the string.")
-        str = '';
-    } else {};
-
-    if (typeof(num)!=='number') {
-        num = parseInt(num);
-        console.log('something is wrong');
-    } else {};
-
-
-    let output = "";
-    let difference = (num-str.length);
-    if (difference>0) {
-        for (i = 0; i<difference; i++) {
-            output += " ";
-        }
-    } else {};
-
-    return output;
-}
-
-function drawBarsAround (num, str) {
+function drawBarsAround (str) {
     let output="┃";
     output+=str;
-    if (typeof(str)==='string'){
-    if (str.length<num) {
-        output+=addSpacesToOutput(num, str);
-    } else {
-
-    };
-      } else {};
     output += "┃";
     return output;
     };    
-    
-function longestValLength (arr) { //will return .length of the longest value in array
-    let retVal = 0;
-  for (i=0; i<arr.length; i++) {
-      if (retVal < arr[i].length) {
-          retVal = arr[i].length;
-      } else {
 
-      }
-    return retVal;
-  }
+function maxLength (arr) { //finding a string with max length in array
+    output = 0;
+    for (i=0; i<arr.length; i++){
+        if (arr[i].length>output) {
+            output = arr[i].length;
+        } else {}
+    }
+    return output;
 }
 
+const space = " ";
 
+function howManyLetters (str) { //this function will calculate amount of spaces needed to add to a string.
+    //added for simplicity
+    return str.length;
+}
+
+function pushSpaces (num) { //will create spaces to push
+    output='';
+    output+=" ".repeat(num);
+    return output;
+ }
 
 function boxIt(str) {
     let output = "";
-    let longestKey = longestValLength(str); //this variable whil be used for border lengths
+    let maxKeyLength = maxLength(str);
     if (str.length === 1) { // case if there is only one value in array
-        output += (drawTopBorder(longestKey) + "\n" + drawBarsAround(str.length, str)) + "\n" + drawBottomBorder(str[0].length);
+        output += (drawTopBorder(str[0].length) + "\n" + drawBarsAround(str)) + "\n" + drawBottomBorder(str[0].length);
 
     } else if (str.length === 0) { // case if there is no input
         output += ('┏┓\n┗┛');
 
-    } else if (str.length > 1) { // case when there is more than one value in array
-        output += (drawTopBorder(longestKey) + "\n");
-        for (i=0; i<str.length+1; i++) { // I had to use str.length+1 because >=str.length returned a value that is undefined
+    } else if (str.length > 1) {
 
-            output += (drawBarsAround(longestKey, str[i]) + "\n"); 
+        output += (drawTopBorder(maxKeyLength) + "\n");
+        let spaces = "" ; //this variable stores spaces to add
+        for (i=0; i<str.length; i++) {
+            let diff = (maxKeyLength-str[i].length);// this line will identify how many spaces to add to string
+
             
+            if (diff > 0) {
+                spaces = ' '.repeat(diff);
+            } else {spaces=""}; //empty
+            output += (drawBarsAround(str[i] + spaces) + ("\n"));
             if (i<(str.length-1)) {
-                output += (drawMiddleBorder(longestKey) + "\n");
-            } else {}
+              output +=  (drawMiddleBorder(maxKeyLength) + "\n");
+            } else {};
+
+
         
         }
-        output += (drawBottomBorder(longestKey));
+        output += (drawBottomBorder(maxKeyLength));
 
     } else {
-        console.log("There is an error")}; // this means that input.length < 0 and shouldn't ever happen
+        console.log("There is an error")}; // this shouldn't ever happen
 
-    output += "\n";
+    // output += "\n";
     return output;
 };
 
 console.log(boxIt(input));
-
-
-
-
 
 
