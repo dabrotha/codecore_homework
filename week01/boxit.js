@@ -1,7 +1,6 @@
 
 const args = process.argv.slice(2);
 let input = args;
-console.log(input);
 let outputStr = ""; // might not need this one
 
 function drawLine (num) {
@@ -23,7 +22,7 @@ return output;
 
 function drawMiddleBorder(num){
     let output="┣";
-      for (let i=1; i<(num.length+1); i++) {
+      for (let i=1; i<(num+1); i++) {
         output+="━";
       }
     output += "┫";
@@ -56,13 +55,18 @@ function maxLength (arr) { //finding a string with max length in array
     return output;
 }
 
+const space = " ";
+
 function howManyLetters (str) { //this function will calculate amount of spaces needed to add to a string.
     //added for simplicity
     return str.length;
 }
 
-
-
+function pushSpaces (num) { //will create spaces to push
+    output='';
+    output+=" ".repeat(num);
+    return output;
+ }
 
 function boxIt(str) {
     let output = "";
@@ -74,19 +78,30 @@ function boxIt(str) {
         output += ('┏┓\n┗┛');
 
     } else if (str.length > 1) {
-        output += (drawTopBorder(str[0].length) + "\n");
+
+        output += (drawTopBorder(maxKeyLength) + "\n");
+        let spaces = "" ; //this variable stores spaces to add
         for (i=0; i<str.length; i++) {
+            let diff = (maxKeyLength-str[i].length);// this line will identify how many spaces to add to string
+
+            
+            if (diff > 0) {
+                spaces = ' '.repeat(diff);
+            } else {spaces=""}; //empty
+            output += (drawBarsAround(str[i] + spaces) + ("\n"));
+            if (i<(str.length-1)) {
+              output +=  (drawMiddleBorder(maxKeyLength) + "\n");
+            } else {};
 
 
-            output += (drawBarsAround(str[i]) + "\n" + drawMiddleBorder(str[i]) + "\n");
         
         }
-        output += (drawBottomBorder(str[0].length));
+        output += (drawBottomBorder(maxKeyLength));
 
     } else {
         console.log("There is an error")}; // this shouldn't ever happen
 
-    output += "\n";
+    // output += "\n";
     return output;
 };
 
