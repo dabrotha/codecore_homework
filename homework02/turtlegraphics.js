@@ -49,21 +49,7 @@
 // let map = buildMap(5, 5, "·");
 // console.log(map);
 
-// let direction = 1;
-// function changeVector(num) { // the way this function works is it assigns a direction responsive to quadrant:
-//     // 1 is right, 2 is up, 3 is left, 4 is down; if num ever is outside of boundaries it refreshes from opposite side:
-//     // 0 becomes 4 and 5 becomes 1 
-//     if (num === 1) { // 1 is turn left
-//         vector ++;
-//     } else { // 0 is turn right
-//         vector--;
-//     }
-//     if (direction === 5) {
-//         direction = 1;
-//     } else if (direction === 0) {
-//         direction = 4;
-//     } else {}
-// }
+
 
 
 
@@ -103,12 +89,6 @@
 // The Turtle
 // To begin drawing, your program needs to know where it should begin. Create a Turtle class whose constructor will take two arguments (in order): x & y coordinates.
 
-class Turtle {
-    constructor (x, y) {
-        this.x = x;
-        this.y = y;
-    }
-}
 
 // Here are some examples:
 
@@ -140,6 +120,61 @@ class Turtle {
 // Moving The Turtle
 // Create a forward method that takes a number of steps then updates the Turtle instance with its new position after moving that many steps. Keep track of every movement the turtle makes including the first one.
 
+class Turtle {
+    constructor (x, y) {
+        this.x = x;
+        this.y = y;
+        this.direction = 1;
+        
+    }
+
+    vector(n) { // the way this method works is it assigns a direction responsive to quadrant:
+        //     // 1 is right, 2 is down, 3 is left, 4 is up; if num ever is outside of boundaries it refreshes from opposite side:
+        //     // 0 becomes 4 and 5 becomes 1 
+        if (direction === 0) {
+            direction = 4
+        } else if (direction === 5) {
+            direction = 1
+        } else {}
+
+        if (n === 1) {
+            x += n
+        } else if (n===2) {
+            y += n;
+        } else if (n===3) {
+            x -= n
+        } else {
+            y -= n;
+        }
+        return this;
+    }
+
+    movement(n) {
+        vector(n);
+        return this;
+    }
+
+    
+
+}
+
+
+// let direction = 1;
+// function changeVector(num) { // the way this function works is it assigns a direction responsive to quadrant:
+//     // 1 is right, 2 is up, 3 is left, 4 is down; if num ever is outside of boundaries it refreshes from opposite side:
+//     // 0 becomes 4 and 5 becomes 1 
+//     if (num === 1) { // 1 is turn left
+//         vector ++;
+//     } else { // 0 is turn right
+//         vector--;
+//     }
+//     if (direction === 5) {
+//         direction = 1;
+//     } else if (direction === 0) {
+//         direction = 4;
+//     } else {}
+// }
+
 // For example:
 
 // // This turtle begins at position (0, 0) on our fictional 5 by 5 grid, then
@@ -161,6 +196,8 @@ class Turtle {
 // // 4┼─┼─┼─┼─┼
 // Turning The Turtle
 // Create a right method that takes zero arguments. When right is called, update the Turtle instance to rotate its facing to the right. A turtle should begin facing east.
+
+
 
 // For example:
 
