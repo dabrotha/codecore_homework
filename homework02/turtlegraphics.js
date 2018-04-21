@@ -1,15 +1,11 @@
 
 
-// let map = [];
-// function buildMap created just in case
 function buildMap(x, y, symbol) { //symbol returns a symbol as an empty spot of map
     let output = [];
     for (let i = 0; i<x; i++) {
         output[i] = [];
-        console.log("output[i]" + output[i])
         for (let j = 0; j<y; j++) {
             output[i][j] = symbol;
-            console.log("output[j]" + output[i][j])
         }
     }
     return output;
@@ -17,6 +13,25 @@ function buildMap(x, y, symbol) { //symbol returns a symbol as an empty spot of 
 
 let map = buildMap(5, 5, "·");
 console.log(map);
+
+let direction = 1;
+function changeVector(num) { // the way this function works is it assigns a direction responsive to quadrant:
+    // 1 is right, 2 is up, 3 is left, 4 is down; if num ever is outside of boundaries it refreshes from opposite side:
+    // 0 becomes 4 and 5 becomes 1 
+    if (num === 1) { // 1 is turn left
+        vector ++;
+    } else { // 0 is turn right
+        vector--;
+    }
+    if (direction === 5) {
+        direction = 1;
+    } else if (direction === 0) {
+        direction = 4;
+    } else {}
+}
+
+
+
 
 
 
