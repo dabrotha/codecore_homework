@@ -99,6 +99,7 @@ class Turtle {
         this.direction = 1;
         this.map = []; // will be recording moves in here
         this.moveLog = [];
+        this.finalString= ''; //this is the final output
     }
 
 buildMap(x, y) { //symbol returns a symbol as an empty spot of map
@@ -109,16 +110,32 @@ buildMap(x, y) { //symbol returns a symbol as an empty spot of map
             output[i][j] = "·";
         }
     }
+    this.map = output;
     return this;
 };
 
 printMap () {
     let largestX = 0;
     let largestY = 0;
-    for (i=0; i<this.moveLog.length; i++) {
-
+    for (let i=0; i<this.moveLog.length; i++) {
+        if (this.moveLog[i][2]>largestX) { //this loop will give max values to buildMap(x,y) will use max value of x or y
+            //that turtle will ever make
+            largestX = this.moveLog[i][2];
+        }
+        if (this.moveLog[i][3]>largestY) {
+            largestY = this.moveLog[i][3];
+        }   
     }
-    
+    this.buildMap(largestX, largestY); //we assign value to this.map within .buildMap
+    let output = '';
+    for (let i = 0; i<this.map.length; i++) {
+        let toStr = this.map[i].join('');
+        output += (toStr + "\n");
+        // console.log("output inside loop" + output + "output inside loop") 
+ 
+    }
+    this.finalString=output;
+    console.log(this.finalString)
     return this
 }
 
@@ -130,13 +147,26 @@ printMap () {
         //     // 0 becomes 4 and 5 becomes 1 
         // this.trajectory.push(n);
         // this.trajectory.push(this.direction);
+        
+        // function checkIfLessThanZero (val1, val2) { //this f-n will make sure that turtle does not move out of boundaries
+        //     if (val1<val2) {
+        //         console.log(`Ooops. The ${val1} must not be less than 0. Please make sure to turn. If you haven't, your movements will not be commited.`)
+        //         n = val1;
+        //     }
+        //     return this;
+        // } will need to reconsider having this function
+        
         if (this.direction === 1) {
+            // checkIfLessThanZero(this.x, n);
             this.x += n;
         } else if (this.direction===2) {
+            // checkIfLessThanZero(this.y, n)
             this.y += n;
         } else if (this.direction===3) {
+            // checkIfLessThanZero(this.x, n)
             this.x -= n;
         } else if (this.direction===4) {
+            // checkIfLessThanZero(this.y, n)
             this.y -= n;
         } else {console.log("movement function doesnt work. x =" + this.x + " y =" + this.y + " n = " + n)}
 
@@ -174,6 +204,7 @@ printMap () {
 }
 
 let tortoise = new Turtle(0, 0);
+tortoise.movement(5).right().movement(8).printMap();
 
 // console.log(tortoise.movement(9));
 
