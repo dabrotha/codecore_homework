@@ -1,34 +1,69 @@
+// Moving The Turtle
+// Create a forward method that takes a number of steps then updates the Turtle instance with its new position 
+//after moving that many steps. Keep track of every movement the turtle makes including the first one.
 
 
-function buildMap(x, y, symbol) { //symbol returns a symbol as an empty spot of map
-    let output = [];
-    for (let i = 0; i<x; i++) {
-        output[i] = [];
-        for (let j = 0; j<y; j++) {
-            output[i][j] = symbol;
-        }
-    }
-    return output;
-};
 
-let map = buildMap(5, 5, "·");
-console.log(map);
+// const turtle = {
+//     name: "Tortoise",
+//     xPosition: 0,
+//     yPosition: 0,
+//     movement: function(n) {
 
-let direction = 1;
-function changeVector(num) { // the way this function works is it assigns a direction responsive to quadrant:
-    // 1 is right, 2 is up, 3 is left, 4 is down; if num ever is outside of boundaries it refreshes from opposite side:
-    // 0 becomes 4 and 5 becomes 1 
-    if (num === 1) { // 1 is turn left
-        vector ++;
-    } else { // 0 is turn right
-        vector--;
-    }
-    if (direction === 5) {
-        direction = 1;
-    } else if (direction === 0) {
-        direction = 4;
-    } else {}
-}
+//     }
+// }
+
+
+// For example:
+
+// // This turtle begins at position (0, 0) on our fictional 5 by 5 grid, then
+// // moves forward 3 steps positioning itself at (3, 0) indicated by the `*`
+// // on the grid. You should record these 2 positions.
+
+// new Turtle(0, 0).forward(3);
+
+// // Figure of turtle's movement on a grid.
+// // LEGEND
+// // • – Starting Location
+// // * – End Location
+// // 
+// //  0 1 2 3 4
+// // 0•-----*─┼
+// // 1┼─┼─┼─┼─┼
+// // 2┼─┼─┼─┼─┼
+// // 3┼─┼─┼─┼─┼
+// // 4┼─┼─┼─┼─┼
+// Turning The Turtle
+
+// function buildMap(x, y, symbol) { //symbol returns a symbol as an empty spot of map
+//     let output = [];
+//     for (let i = 0; i<x; i++) {
+//         output[i] = [];
+//         for (let j = 0; j<y; j++) {
+//             output[i][j] = symbol;
+//         }
+//     }
+//     return output;
+// };
+
+// let map = buildMap(5, 5, "·");
+// console.log(map);
+
+// let direction = 1;
+// function changeVector(num) { // the way this function works is it assigns a direction responsive to quadrant:
+//     // 1 is right, 2 is up, 3 is left, 4 is down; if num ever is outside of boundaries it refreshes from opposite side:
+//     // 0 becomes 4 and 5 becomes 1 
+//     if (num === 1) { // 1 is turn left
+//         vector ++;
+//     } else { // 0 is turn right
+//         vector--;
+//     }
+//     if (direction === 5) {
+//         direction = 1;
+//     } else if (direction === 0) {
+//         direction = 4;
+//     } else {}
+// }
 
 
 
@@ -67,6 +102,13 @@ function changeVector(num) { // the way this function works is it assigns a dire
 
 // The Turtle
 // To begin drawing, your program needs to know where it should begin. Create a Turtle class whose constructor will take two arguments (in order): x & y coordinates.
+
+class Turtle {
+    constructor (x, y) {
+        this.x = x;
+        this.y = y;
+    }
+}
 
 // Here are some examples:
 
