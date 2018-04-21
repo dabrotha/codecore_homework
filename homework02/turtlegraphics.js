@@ -130,11 +130,7 @@ class Turtle {
     movement(n) { // the way this method works is it assigns a direction responsive to quadrant:
         //     // 1 is right, 2 is down, 3 is left, 4 is up; if num ever is outside of boundaries it refreshes from opposite side:
         //     // 0 becomes 4 and 5 becomes 1 
-        if (direction === 0) {
-            direction = 4
-        } else if (direction === 5) {
-            direction = 1
-        } else {}
+
 
         if (n === 1) {
             x += n
@@ -147,6 +143,25 @@ class Turtle {
         }
         return this;
     }
+    right(){
+        this.direction += 1;
+        if (this.direction === 0) {
+            this.direction = 4
+        } else if (this.direction === 5) {
+            this.direction = 1
+        } else {}
+        return this
+    }
+    left(){
+        this.direction -= 1;
+        if (this.direction === 0) {
+            this.direction = 4
+        } else if (this.direction === 5) {
+            this.direction = 1
+        } else {}
+        return this
+    }
+
 }
 
 
