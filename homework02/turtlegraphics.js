@@ -2,8 +2,6 @@
 // Create a forward method that takes a number of steps then updates the Turtle instance with its new position 
 //after moving that many steps. Keep track of every movement the turtle makes including the first one.
 
-
-
 // const turtle = {
 //     name: "Tortoise",
 //     xPosition: 0,
@@ -12,7 +10,6 @@
 
 //     }
 // }
-
 
 // For example:
 
@@ -49,16 +46,6 @@
 // let map = buildMap(5, 5, "·");
 // console.log(map);
 
-
-
-
-
-
-
-
-
-
-
 // Drawing Turtle Graphics Style
 // In this homework, you will create a simple drawing program inspired by Turtle Graphics. It will be a much simpler implementation that will only accept right angles (90 degrees).
 
@@ -87,8 +74,7 @@
 // Before beginning, you should read all instructions.
 
 // The Turtle
-// To begin drawing, your program needs to know where it should begin. Create a Turtle class whose constructor will take two arguments (in order): x & y coordinates.
-
+// To begin drawing, your program needs to know where it should begin. Create a Turtle class whose constructor will take two arguments (in order): x & y coordinates
 
 // Here are some examples:
 
@@ -127,20 +113,23 @@ class Turtle {
         this.direction = 1;
     }
 
+
+
     movement(n) { // the way this method works is it assigns a direction responsive to quadrant:
         //     // 1 is right, 2 is down, 3 is left, 4 is up; if num ever is outside of boundaries it refreshes from opposite side:
         //     // 0 becomes 4 and 5 becomes 1 
+        // this.trajectory.push(n);
+        // this.trajectory.push(this.direction);
 
-
-        if (n === 1) {
-            x += n
-        } else if (n===2) {
-            y += n;
-        } else if (n===3) {
-            x -= n
-        } else {
-            y -= n;
-        }
+        if (this.direction === 1) {
+            this.x += n;
+        } else if (this.direction===2) {
+            this.y += n;
+        } else if (this.direction===3) {
+            this.x -= n;
+        } else if (this.direction===4) {
+            this.y -= n;
+        } else {console.log("movement function doesnt work. x =" + this.x + " y =" + this.y + " n = " + n)}
         return this;
     }
     right(){
@@ -161,8 +150,11 @@ class Turtle {
         } else {}
         return this
     }
-
 }
+
+let tortoise = new Turtle(0, 0);
+// console.log(tortoise.movement(9));
+
 
 
 // let direction = 1;
@@ -360,3 +352,4 @@ class Turtle {
 
 // $ node --output=drawing.txt f10-r-f10-r-f10-r-f10
 // 🐢 Drawing written to drawing.txt
+
