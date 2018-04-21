@@ -1,24 +1,11 @@
 // Moving The Turtle
 // Create a forward method that takes a number of steps then updates the Turtle instance with its new position 
 //after moving that many steps. Keep track of every movement the turtle makes including the first one.
-
-// const turtle = {
-//     name: "Tortoise",
-//     xPosition: 0,
-//     yPosition: 0,
-//     movement: function(n) {
-
-//     }
-// }
-
 // For example:
-
 // // This turtle begins at position (0, 0) on our fictional 5 by 5 grid, then
 // // moves forward 3 steps positioning itself at (3, 0) indicated by the `*`
 // // on the grid. You should record these 2 positions.
-
 // new Turtle(0, 0).forward(3);
-
 // // Figure of turtle's movement on a grid.
 // // LEGEND
 // // • – Starting Location
@@ -31,7 +18,6 @@
 // // 3┼─┼─┼─┼─┼
 // // 4┼─┼─┼─┼─┼
 // Turning The Turtle
-
 // function buildMap(x, y, symbol) { //symbol returns a symbol as an empty spot of map
 //     let output = [];
 //     for (let i = 0; i<x; i++) {
@@ -111,16 +97,39 @@ class Turtle {
         this.x = x;
         this.y = y;
         this.direction = 1;
+        this.map = []; // will be recording moves in here
+        this.moveLog = [];
     }
 
+buildMap(x, y) { //symbol returns a symbol as an empty spot of map
+    let output = [];
+    for (let i = 0; i<x; i++) {
+        output[i] = [];
+        for (let j = 0; j<y; j++) {
+            output[i][j] = "·";
+        }
+    }
+    return this;
+};
 
+printMap () {
+    let largestX = 0;
+    let largestY = 0;
+    for (i=0; i<this.moveLog.length; i++) {
+
+    }
+    
+    return this
+}
+
+// let map = buildMap(5, 5, "·");
+// console.log(map);
 
     movement(n) { // the way this method works is it assigns a direction responsive to quadrant:
         //     // 1 is right, 2 is down, 3 is left, 4 is up; if num ever is outside of boundaries it refreshes from opposite side:
         //     // 0 becomes 4 and 5 becomes 1 
         // this.trajectory.push(n);
         // this.trajectory.push(this.direction);
-
         if (this.direction === 1) {
             this.x += n;
         } else if (this.direction===2) {
@@ -130,6 +139,18 @@ class Turtle {
         } else if (this.direction===4) {
             this.y -= n;
         } else {console.log("movement function doesnt work. x =" + this.x + " y =" + this.y + " n = " + n)}
+
+        if (this.x<0) {
+            this.x = 0;
+            console.log("Ooops. The turtle has bumped into a barrier. X cannot be less than 0. Please turn the turtle and move in a different direction")
+        };
+
+        if (this.y<0) {
+            this.y = 0;
+            console.log("Ooops. The turtle has bumped into a barrier. Y cannot be less than 0. Please turn the turtle and move in a different direction")
+        }
+        this.moveLog.push([n, this.direction, this.x, this.y]) //this line pushes the movement log as a new instance into array moveLog
+
         return this;
     }
     right(){
@@ -153,9 +174,8 @@ class Turtle {
 }
 
 let tortoise = new Turtle(0, 0);
+
 // console.log(tortoise.movement(9));
-
-
 
 // let direction = 1;
 // function changeVector(num) { // the way this function works is it assigns a direction responsive to quadrant:
