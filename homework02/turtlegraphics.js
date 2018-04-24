@@ -96,8 +96,8 @@ class Turtle {
     constructor (x, y) {
         this.x = x;
         this.y = y;
-        this.startingX = x; //this will become an ending x; we store it because x will be mutated through moveLog
-        this.startingY = y;
+        this.startingX = this.x; //this will become an ending x; we store it because x will be mutated through moveLog
+        this.startingY = this.y;
         this.direction = 1;
         this.map = []; // will be recording moves in here map[a][b]: a = y coordinate; b = x
         this.moveLog = [];
@@ -122,15 +122,33 @@ implementTrajectory() { // this method writes trajectory into already created th
         //a a1 goes for x1, x2 displacement . dir for direction
 
     for (let i = 0; i<this.moveLog.length; i++) {
-        
-        if (this.moveLog[1] === 2) {
-            // for (j in this.moveLog[0]){
-            //     this.map[this.startingY] = drawStar();
-            //     this.startingY+=1;
-            // }
-            // this.map[this.startingX][this.startingY] = drawStar();
+        if (this.moveLog[i][1] === 2) {
 
-        } else if (this.direction === 4) {} 
+            for (let j=0; j<this.moveLog[i][0]; j++){ // j is number of steps turtle makes
+                this.map[this.startingY][this.startingX] = drawStar();
+                this.startingY+=1;
+            }
+
+        } else if (this.moveLog[i][1] === 4) {
+
+            for (let j=0; j<this.moveLog[i][0]; j++){ // j is number of steps turtle makes
+                console.log('j dir4 loop is here')
+                this.map[this.startingY][this.startingX] = drawStar();
+                this.startingY-=1;
+            }
+        } else if (this.moveLog[i][1] === 1) {
+
+            for (let j=0; j<this.moveLog[i][0]; j++){ // j is number of steps turtle makes
+                this.map[this.startingY][this.startingX] = drawStar();
+                this.startingX+=1;
+            }
+        } else if (this.moveLog[i][1] === 3) {
+
+            for (let j=0; j<this.moveLog[i][0]; j++){ // j is number of steps turtle makes
+                this.map[this.startingY][this.startingX] = drawStar();
+                this.startingX-=1;
+            }
+        } else {}
 
         for (let j=0; j<this.moveLog[i][0]; j++) { //in this.moveLog[i][0] we hold how many steps turtle is making
          
@@ -156,24 +174,39 @@ printMap () {
     let largestX = 0;
     let largestY = 0;
     for (let i=0; i<this.moveLog.length; i++) {
-        if (this.moveLog[i][2]>largestX) { //this loop will give max values to buildMap(x,y) will use max value of x or y
-            //that turtle will ever make
+        console.log(i+ " i iteration sin printMap")
+
+        if (largestX<this.moveLog[i][2]) { //this loop will give max values to buildMap(x,y) will use max value of x or y that turtle will ever make but in positive direction
             largestX = this.moveLog[i][2];
-        }
+            console.log(largestX + "largestX in work")
+        } else {}
+        
+        if (largestX<this.startingX) { // with walking in direction 3 we must make sure that largestX will === to largest value. without this conditional we will be losing values
+            largestX = this.startingX;
+            console.log(largestX + "largestX in work")
+        } else {}
+
         if (this.moveLog[i][3]>largestY) {
             largestY = this.moveLog[i][3];
-        }   
+        }   else {}
+
+        if (largestY<this.startingY) { // with walking in direction 3 we must make sure that largestXY will === to largest value. without this conditional we will be losing values
+            largestY = this.startingY;
+            console.log(largestX + "largestX in work")
+        } else {}
     }
-    this.buildMap(largestX, largestY); //we assign value to this.map within .buildMap
+    console.log(largestX + "this is largestX")
+    this.buildMap(largestX+2, largestY+2); //we assign value to this.map within .buildMap
     let output = '';
     // here we need to use a method to overwrite empty map spaces with turtle's trajectory
-    for (let i = 0; i<this.map.length; i++) {
+    this.implementTrajectory();
+
+    for (let i = 0; i<this.map.length; i++) { //creates final string output 
         let toStr = this.map[i].join('');
         output += (toStr + "\n");
         // console.log("output inside loop" + output + "output inside loop") 
     }
 
-    this.implementTrajectory();
 
     this.finalString=output;
     console.log(this.finalString)
@@ -190,7 +223,7 @@ printMap () {
         } else if (this.direction===2) {
 
             this.y += n;
-        } else if (this.direction===3) {
+        } else if (this.direction===3){
 
             this.x -= n;
         } else if (this.direction===4) {
@@ -231,9 +264,9 @@ printMap () {
     }
 }
 
-let tortoise = new Turtle(5, 0);
+let tortoise = new Turtle(12, 7);
 // tortoise.right().movement(8).printMap(); //- check direction 2
-tortoise.right().movement(8).printMap(); //- check direction 4
+tortoise.right().movement(3).right().movement(2).right().movement(6).right().movement(6).printMap(); //- check direction 4
 
 // console.log(tortoise.movement(9));
 
