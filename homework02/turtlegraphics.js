@@ -1,96 +1,4 @@
-// Moving The Turtle
-// Create a forward method that takes a number of steps then updates the Turtle instance with its new position 
-//after moving that many steps. Keep track of every movement the turtle makes including the first one.
-// For example:
-// // This turtle begins at position (0, 0) on our fictional 5 by 5 grid, then
-// // moves forward 3 steps positioning itself at (3, 0) indicated by the `*`
-// // on the grid. You should record these 2 positions.
-// new Turtle(0, 0).forward(3);
-// // Figure of turtle's movement on a grid.
-// // LEGEND
-// // • – Starting Location
-// // * – End Location
-// // 
-// //  0 1 2 3 4
-// // 0•-----*─┼
-// // 1┼─┼─┼─┼─┼
-// // 2┼─┼─┼─┼─┼
-// // 3┼─┼─┼─┼─┼
-// // 4┼─┼─┼─┼─┼
-// Turning The Turtle
-// function buildMap(x, y, symbol) { //symbol returns a symbol as an empty spot of map
-//     let output = [];
-//     for (let i = 0; i<x; i++) {
-//         output[i] = [];
-//         for (let j = 0; j<y; j++) {
-//             output[i][j] = symbol;
-//         }
-//     }
-//     return output;
-// };
 
-// let map = buildMap(5, 5, "·");
-// console.log(map);
-
-// Drawing Turtle Graphics Style
-// In this homework, you will create a simple drawing program inspired by Turtle Graphics. It will be a much simpler implementation that will only accept right angles (90 degrees).
-
-// Here's an example of what your program should be able to do by the end:
-
-// new Turtle(0, 0)
-//   .forward(5)
-//   .right()
-//   .forward(5)
-//   .right()
-//   .forward(5)
-//   .right()
-//   .forward(5)
-//   .print()
-// The above would log the following to the screen:
-
-// ••••••
-// •    •
-// •    •
-// •    •
-// •    •
-// ••••••
-// The above drew a 5 by 5 square.
-
-// Breaking It Down
-// Before beginning, you should read all instructions.
-
-// The Turtle
-// To begin drawing, your program needs to know where it should begin. Create a Turtle class whose constructor will take two arguments (in order): x & y coordinates
-
-// Here are some examples:
-
-// // This turtle begins at position (0, 0) on our fictional 5 by 5 grid.
-
-// new Turtle(0, 0);
-
-// // This is an illustration that is part of the explanation.
-// // Your program should not draw it.
-// //
-// //  0 1 2 3 4
-// // 0•─┼─┼─┼─┼
-// // 1┼─┼─┼─┼─┼
-// // 2┼─┼─┼─┼─┼
-// // 3┼─┼─┼─┼─┼
-// // 4┼─┼─┼─┼─┼
-
-// // This turtle begins at position (2, 3) on our fictional 5 by 5 grid.
-
-// new Turtle(2, 3);
-
-// //  0 1 2 3 4
-// // 0┼─┼─┼─┼─┼
-// // 1┼─┼─┼─┼─┼
-// // 2┼─┼─┼─┼─┼
-// // 3┼─┼─•─┼─┼
-// // 4┼─┼─┼─┼─┼
-
-// Moving The Turtle
-// Create a forward method that takes a number of steps then updates the Turtle instance with its new position after moving that many steps. Keep track of every movement the turtle makes including the first one.
 
 class Turtle {
     constructor (x, y) {
@@ -116,7 +24,7 @@ buildMap(x, y) { //symbol returns a symbol as an empty spot of map
     return this;
 };
 
-implementTrajectory() { // this method writes trajectory into already created this.map (by buildMap within printMap)
+allPoints() { // this method writes trajectory into already created this.map (by buildMap within printMap)
     console.log(this.moveLog);
     const drawStar = () => {return "*" }
         //a a1 goes for x1, x2 displacement . dir for direction
@@ -152,10 +60,10 @@ implementTrajectory() { // this method writes trajectory into already created th
 
         for (let j=0; j<this.moveLog[i][0]; j++) { //in this.moveLog[i][0] we hold how many steps turtle is making
          
-         
+            
             // this.map[this.startingX]=drawStar();
             // this.startingX += 1;
-
+            
             // if (this.startingX<0) {
             //     this.x = 0;
             //     console.log("Ooops. The turtle has bumped into a barrier. X cannot be less than 0. Further movement in this direction was not possible")
@@ -174,7 +82,7 @@ printMap () {
     let largestX = 0;
     let largestY = 0;
     for (let i=0; i<this.moveLog.length; i++) {
-        console.log(i+ " i iteration sin printMap")
+        console.log(i + " i iteration sin printMap")
 
         if (largestX<this.moveLog[i][2]) { //this loop will give max values to buildMap(x,y) will use max value of x or y that turtle will ever make but in positive direction
             largestX = this.moveLog[i][2];
@@ -199,14 +107,15 @@ printMap () {
     this.buildMap(largestX+2, largestY+2); //we assign value to this.map within .buildMap
     let output = '';
     // here we need to use a method to overwrite empty map spaces with turtle's trajectory
-    this.implementTrajectory();
+    this.allPoints();
+
+    this.map[this.startingY][this.startingX] = "T"; // this will show our turtle
 
     for (let i = 0; i<this.map.length; i++) { //creates final string output 
         let toStr = this.map[i].join('');
         output += (toStr + "\n");
         // console.log("output inside loop" + output + "output inside loop") 
     }
-
 
     this.finalString=output;
     console.log(this.finalString)
@@ -266,7 +175,7 @@ printMap () {
 
 let tortoise = new Turtle(12, 7);
 // tortoise.right().movement(8).printMap(); //- check direction 2
-tortoise.right().movement(3).right().movement(2).right().movement(6).right().movement(6).printMap(); //- check direction 4
+// tortoise.right().movement(3).right().movement(2).right().movement(6).right().movement(6).left().movement(3).left().movement(5).left().movement(2).left().movement(6).printMap(); //- check direction 4
 
 // console.log(tortoise.movement(9));
 
