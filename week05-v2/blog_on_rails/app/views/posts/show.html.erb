@@ -3,16 +3,11 @@
 
 <p><%= @post.body %></p>
 
-<p><%= @post.created_at %></p>
+<p><%= time_ago_in_words(@post.created_at) %> ago</p>
+
 
 <%= link_to "Edit", edit_post_path(@post) %>
 <%= link_to "Delete", post_path(@post.id), method: :delete %>
-
-<%#
-  To tell form_for that we're creating an answer for a question,
-  use an array where the first element is the question and
-  the second element is the new answer.
-%>
 
 <%= form_for [@post, @comment] do |f| %>
   <% if @comment.errors.present? %>
@@ -39,10 +34,10 @@
 
         <%= comment.body %> <br />
 
-        <%= link_to "Delete Comment", post_comment_path(@post, comment), method: :delete %>
+        <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %>
 
         <small>
-          Posted <%= (comment.created_at) %> ago
+          Posted <%= time_ago_in_words(comment.created_at) %> ago
         </small>
 
       </p>
