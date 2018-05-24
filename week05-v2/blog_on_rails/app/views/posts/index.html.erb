@@ -1,0 +1,23 @@
+
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h3 class="display-5"><h3>Whoever made this blog might not have known what he was doing</h3> </h2> 
+  </div>
+<br>
+
+
+
+
+<% @posts.each do |post|  %>
+
+
+  <div class="column">
+    <h3 class="display-5"><%= link_to post.title, post_path(post) %></h3> 
+    <p><%= post.body %></p>
+  </div>
+
+
+<% end %>
+
+</div>
