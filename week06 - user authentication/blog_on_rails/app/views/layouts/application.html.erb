@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BlogOnRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+
+  </head>
+  <body>
+<%= link_to "Home", posts_path %>
+<%= link_to "New", new_post_path %>
+   <br>
+
+   <% if user_signed_in? %>
+  Hello <%= link_to "#{current_user.first_name}", edit_user_path(current_user) %>,
+  <%= link_to "Logout", sessions_path, method: :delete,
+            data: {confirm: "are you sure you want to log out?"}%>
+<% else %>
+  <%= link_to "Login", new_sessions_path %> |
+  <%= link_to "Sign Up", new_user_path %>
+<% end %>
+<hr>
+
+    <%= yield %>
+
+    <br>
+
+    <div class="container-fluid">
+      <% flash.each do |type, msg| %>
+        <div
+          class="alert alert-<%= type == "alert" ? "danger" : "success" %> alert-dismissible fade show"
+          role="alert"
+        >
+          <%= msg %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+
+    
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+
+<p>This is a user edit page:</p>
+
+
+<h1>Edit Your Profile</h1>
+<% if @user.errors.any? %>
+  <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+Users Manage Users at this page
+
